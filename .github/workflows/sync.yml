@@ -1,0 +1,31 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # runs every day at midnight
+  workflow_dispatch:       # allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream
+        run: |
+          git remote add upstream https://github.com/gimnathperera/tutorme-api.git
+          git fetch upstream
+
+      - name: Merge upstream/main into fork
+        run: |
+          git checkout main
+          git merge upstream/main
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/JayathuShehan/tutorme-api-fork.git main
