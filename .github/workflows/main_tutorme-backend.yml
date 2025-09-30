@@ -52,4 +52,4 @@ jobs:
           app-name: 'tutorme-backend'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DC7941D786D24A42BEAC9530B377FB7A }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A4D80543A3D14FED8925EE4505120E3D }}
