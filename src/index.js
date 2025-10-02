@@ -4,7 +4,7 @@ const config = require('./config/config');
 const logger = require('./config/logger');
 
 let server;
-const port = config.port || 3000;
+const port = process.env.PORT || config.port || 3000;
 
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
